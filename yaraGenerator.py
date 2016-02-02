@@ -25,9 +25,10 @@ def getFiles(workingdir):
   hashList = [] 
   #get hashes
   for f in os.listdir(workingdir):
-    if os.path.isfile(workingdir + f) and not f.startswith("."):
-     fhash = md5sum(workingdir + f)
-     fileDict[fhash] = workingdir + f
+    filepath = os.path.join(workingdir, f)
+    if os.path.isfile(filepath) and not f.startswith("."):
+     fhash = md5sum(filepath)
+     fileDict[fhash] = filepath
      hashList.append(fhash)
   if len(fileDict) == 0:
     print "[!] No Files Present in \"" + workingdir +"\"" 
